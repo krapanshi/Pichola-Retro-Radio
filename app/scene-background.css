@@ -1,0 +1,54 @@
+/* Keep the illustrated Pichola scene behind the entire app. */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: #160e09;
+  background-image: url("/bg/scene-wide.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Some page wrappers use a solid fallback colour. Let the body scene show. */
+body > main {
+  background-color: transparent !important;
+}
+
+@media (orientation: portrait), (max-width: 700px) {
+  body {
+    background-image: url("/bg/scene-tall.png");
+    background-attachment: scroll;
+  }
+}
+
+/*
+ * YouTube renders its controls inside a cross-origin iframe, so those
+ * internal elements cannot be styled individually. Collapse the visible
+ * video surface and keep playback controlled by our custom radio controls.
+ */
+/* Remove the preview and its label from the page layout immediately. */
+*:has(+ .aspect-video),
+.aspect-video {
+  position: fixed !important;
+  left: -10000px !important;
+  top: 0 !important;
+  width: 200px !important;
+  height: 200px !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* YouTube replaces the API mount element with this iframe. */
+iframe[src*="youtube.com/embed"],
+iframe[src*="youtube-nocookie.com/embed"] {
+  width: 200px !important;
+  height: 200px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

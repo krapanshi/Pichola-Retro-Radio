@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette — lakeside dusk over Pichola: terracotta stalls, brass radio dial,
+     teal water, cream signage, deep rust shadow. */
+  --color-ink-950: #140d08;
+  --color-paper-100: #f0e6d2;
+  --color-adobe-600: #b1512f;
+  --color-brass-500: #d1993f;
+  --color-brass-300: #e8bf7a;
+  --color-teal-800: #1f3b3f;
+  --color-rust-700: #7a2f1f;
+
+  --font-display: var(--font-fraunces), "Fraunces", ui-serif, serif;
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--color-ink-950);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-paper-100);
+}
+
+/* ---------- Background scene ---------- */
+.hero-bg {
+  background-image: url("/bg/scene-wide.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media (orientation: portrait) {
+  .hero-bg {
+    background-image: url("/bg/scene-tall.png");
+  }
+}
+
+
+
+
+/* ---------- Film grain overlay ---------- */
+
+.grain-overlay {
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vinyl-spin {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-colon-blink {
+  animation: blink 1s step-start infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-vinyl-spin {
+    animation: none;
+  }
+  .animate-colon-blink {
+    animation: none;
+  }
+}
+
+/* ---------- Glass chrome, shared by the desktop pill and mobile card ---------- */
+
+.glass {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 0.15),
+    rgb(255 255 255 / 0.055)
+  );
+  backdrop-filter: blur(48px) saturate(1.7);
+  -webkit-backdrop-filter: blur(48px) saturate(1.7);
+  box-shadow:
+    0 16px 48px -12px rgb(0 0 0 / 0.8),
+    inset 0 1px 0 rgb(255 255 255 / 0.2);
+}
+
+.chip {
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 0.12),
+    rgb(255 255 255 / 0.04)
+  );
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+
+/* ---------- Seek bar ---------- */
+
+.seek-rail {
+  background: rgb(255 255 255 / 0.15);
+}
+
+.seek-fill {
+  background: linear-gradient(to right, var(--color-brass-500), var(--color-brass-300));
+  box-shadow: 0 0 10px 1px rgb(209 153 63 / 0.55);
+}
+
+.seek-knob {
+  background: var(--color-paper-100);
+  box-shadow: 0 0 0 3px rgb(0 0 0 / 0.35);
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.seek-wrap:hover .seek-knob,
+.seek-wrap:focus-within .seek-knob {
+  opacity: 1;
+}
+
+/* ---------- Transport / play button ---------- */
+
+.play-button {
+  background-image: linear-gradient(to bottom, var(--color-brass-300), var(--color-brass-500));
+  box-shadow:
+    0 8px 20px -4px rgb(209 153 63 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+
+.transport-button {
+  color: var(--color-paper-100);
+  opacity: 0.85;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.transport-button:hover {
+  opacity: 1;
+}
+
+.transport-button:active {
+  transform: scale(0.92);
+}
+
+/* Visible keyboard focus everywhere, incl. inside the glass pill */
+:focus-visible {
+  outline: 2px solid var(--color-brass-300);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
