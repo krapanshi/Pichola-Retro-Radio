@@ -64,14 +64,9 @@ npm --version
 
 ```bash
 git clone https://github.com/krapanshi/Pichola-Retro-Radio.git
-cd Pichola-Retro-Radio/radio-pichola
+cd Pichola-Retro-Radio
 ```
 
-If the project is already downloaded on Windows, open PowerShell and run:
-
-```powershell
-cd C:\Users\DELL\Downloads\radio-pichola\radio-pichola
-```
 
 ### 2. Install dependencies
 
@@ -159,54 +154,6 @@ with the custom radio controls instead.
 Some browsers block media from starting automatically. If playback does not
 begin immediately, press the play button once to grant media playback
 permission.
-
-## Deploy on Netlify
-
-1. Push the project to a GitHub, GitLab, or Bitbucket repository.
-2. Sign in to [Netlify](https://app.netlify.com/).
-3. Select **Add new project**, then **Import an existing project**.
-4. Connect the Git provider and choose this repository.
-5. Use the following build configuration:
-
-```text
-Base directory: radio-pichola
-Build command: npm run build
-Publish directory: .next
-```
-
-6. Add an environment variable named `NODE_VERSION` with the value `20`.
-7. Select **Deploy**.
-
-Netlify automatically builds and deploys the application again whenever a new
-commit is pushed to the connected branch.
-
-## Troubleshooting
-
-### The background is blank or black
-
-- Confirm that `scene-wide.png` and `scene-tall.png` exist in `public/bg/`.
-- Keep the filenames and letter casing unchanged.
-- Restart the development server after changing configuration files.
-- Perform a hard refresh with `Ctrl+Shift+R`.
-
-### A song does not play
-
-- Confirm that the track has a real YouTube video ID in `lib/tracks.ts`.
-- Confirm that the video is still available and permits embedding.
-- Press play manually if the browser blocked automatic playback.
-
-### Port 3000 is already in use
-
-```bash
-npm run dev -- -p 3001
-```
-
-Then open [http://localhost:3001](http://localhost:3001).
-
-### Changes are not visible
-
-Stop the server with `Ctrl+C`, start it again with `npm run dev`, and perform a
-hard refresh in the browser.
 
 ## Copyright and Usage
 
