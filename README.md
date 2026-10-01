@@ -9,6 +9,11 @@ The application uses the YouTube IFrame API as its playback engine while
 presenting its own retro radio controls. No audio files are stored in this
 repository.
 
+## Live Demo
+
+🎧 **Listen to Pichola Retro Radio:**  
+[https://pichola-retro-radio.netlify.app](https://pichola-retro-radio.netlify.app)
+
 ## Features
 
 - Responsive Lake Pichola artwork for desktop and mobile screens
